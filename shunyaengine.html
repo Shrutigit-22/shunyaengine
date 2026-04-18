@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShunyaEngine — Zero Investment. Zero Face. Real Income.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f0e8;
+    --cream: #ede8dc;
+    --accent: #e84c1e;
+    --accent2: #f2a83b;
+    --muted: #6b6560;
+    --border: #2a2520;
+    --card: #131210;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--white) !important;
+    padding: 8px 18px;
+    font-size: 11px !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--accent2) !important; color: var(--black) !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px 80px 48px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero-tag {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 8vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+
+  h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 400px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--accent2); color: var(--black); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover { border-color: var(--white); }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 48px;
+    position: relative;
+  }
+
+  .hero-ticker {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    writing-mode: vertical-rl;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--border);
+    text-transform: uppercase;
+    padding: 24px 16px;
+    border-left: 1px solid var(--border);
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .stat-box {
+    background: var(--card);
+    padding: 28px 24px;
+  }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 0.02em;
+    color: var(--accent2);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-manifesto {
+    margin-bottom: 40px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    position: relative;
+  }
+
+  .hero-manifesto::before {
+    content: '"';
+    font-family: 'Instrument Serif', serif;
+    font-size: 80px;
+    color: var(--accent);
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    line-height: 1;
+    opacity: 0.4;
+  }
+
+  .hero-manifesto p {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--cream);
+    padding-top: 16px;
+  }
+
+  .hero-manifesto cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  /* ─── MARQUEE ─── */
+  .marquee-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--accent);
+    overflow: hidden;
+    padding: 12px 0;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .marquee-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  .marquee-item::after {
+    content: '◆';
+    font-size: 8px;
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section {
+    padding: 100px 48px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 60px;
+  }
+
+  .section-title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how {
+    border-top: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .step {
+    background: var(--black);
+    padding: 36px 28px;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .step:hover { background: #111; }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .step h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+
+  .step p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .step-arrow {
+    position: absolute;
+    top: 36px;
+    right: 28px;
+    font-size: 20px;
+    color: var(--accent);
+  }
+
+  /* ─── TEMPLATES / STORE ─── */
+  .store {
+    border-top: 1px solid var(--border);
+  }
+
+  .store-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .template-card {
+    background: var(--card);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: block;
+    color: var(--white);
+  }
+
+  .template-card:hover { background: #161412; }
+
+  .template-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .template-card:hover::before { transform: scaleX(1); }
+
+  .template-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: var(--border);
+    line-height: 1;
+    position: absolute;
+    bottom: 20px;
+    right: 28px;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+  }
+
+  .template-card:hover .template-num { color: #222; }
+
+  .template-tag {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    border: 1px solid var(--accent);
+    display: inline-block;
+    padding: 3px 8px;
+  }
+
+  .template-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .template-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 320px;
+    margin-bottom: 28px;
+  }
+
+  .template-price {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .price-inr {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--accent2);
+    letter-spacing: 0.04em;
+  }
+
+  .price-usd {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .template-includes {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .include-tag {
+    font-size: 9px;
+    padding: 3px 8px;
+    background: var(--border);
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── BUNDLE CTA ─── */
+  .bundle {
+    background: var(--accent);
+    padding: 80px 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .bundle-left h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 64px);
+    letter-spacing: 0.02em;
+    color: var(--black);
+    line-height: 0.95;
+    margin-bottom: 16px;
+  }
+
+  .bundle-left p {
+    font-size: 13px;
+    color: rgba(0,0,0,0.65);
+    max-width: 500px;
+  }
+
+  .bundle-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bundle-price-inr {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--black);
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .bundle-price-usd {
+    font-size: 11px;
+    color: rgba(0,0,0,0.5);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    padding: 14px 28px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-dark:hover { background: #1a1a1a; }
+
+  /* ─── BLOG ─── */
+  .blog {
+    border-top: 1px solid var(--border);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .blog-card {
+    background: var(--card);
+    padding: 36px 32px;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: var(--white);
+    display: block;
+  }
+
+  .blog-card:hover { background: #111; }
+
+  .blog-card.featured {
+    grid-row: span 2;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 420px;
+    background: linear-gradient(to top, #0a0a0a 40%, transparent), 
+                repeating-linear-gradient(45deg, #111 0px, #111 1px, transparent 1px, transparent 12px);
+  }
+
+  .blog-cat {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    border: 1px solid var(--accent);
+    display: inline-block;
+    padding: 3px 8px;
+  }
+
+  .blog-card h3 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    color: var(--white);
+  }
+
+  .blog-card.featured h3 {
+    font-size: 32px;
+  }
+
+  .blog-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+
+  .blog-meta {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .blog-meta::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  /* ─── TOOLS ─── */
+  .tools {
+    border-top: 1px solid var(--border);
+    background: var(--card);
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .tool-card {
+    background: var(--black);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .tool-card:hover { background: #0d0d0d; }
+
+  .tool-icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .tool-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  .tool-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .tool-commission {
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 48px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 40px;
+  }
+
+  .footer-brand .nav-logo {
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .footer-brand p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 240px;
+  }
+
+  .footer-col h4 {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--white); }
+
+  .footer-badge {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    align-self: start;
+  }
+
+  .footer-badge p {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .footer-badge strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--accent2);
+    letter-spacing: 0.04em;
+    margin: 8px 0 4px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * {
+    animation: fadeUp 0.7s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  h1 { animation-delay: 0.2s; }
+  .hero-sub { animation-delay: 0.3s; }
+  .hero-ctas { animation-delay: 0.4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 24px 40px; border-right: none; }
+    .hero-right { padding: 0 24px 60px; }
+    .hero-ticker { display: none; }
+    section { padding: 60px 24px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .templates-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-card.featured { min-height: 300px; }
+    .tools-grid { grid-template-columns: 1fr 1fr; }
+    .bundle { grid-template-columns: 1fr; text-align: left; }
+    .bundle-right { text-align: left; }
+    footer { grid-template-columns: 1fr 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Shunya<span>Engine</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#store">Templates</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#store" class="nav-cta">Get Templates</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Building from India — No Face. No Name.</div>
+    <h1>Zero<br>Invest<br><em>Real</em><br>Income.</h1>
+    <p class="hero-sub">
+      Make.com automations + AI workflows that generate passive income. 
+      Done-for-you templates. One-time payment. No monthly fees. No coding required.
+    </p>
+    <div class="hero-ctas">
+      <a href="#store" class="btn-primary">Browse Templates →</a>
+      <a href="#how" class="btn-secondary">How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-ticker">Zero Investment · Zero Face · Real Income · ShunyaEngine</div>
+    <div class="hero-manifesto">
+      <p>Build systems that earn while you sleep. Not courses. Not coaching. Raw automation blueprints — import, run, profit.</p>
+      <cite>— The Builder, ShunyaEngine</cite>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Live Templates</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">60s</div>
+        <div class="stat-label">Import Time</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">₹0</div>
+        <div class="stat-label">Monthly Fees</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Runs Automatically</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item">Make.com Automations</span>
+    <span class="marquee-item">AI-Powered Workflows</span>
+    <span class="marquee-item">Passive Income from India</span>
+    <span class="marquee-item">No-Code Templates</span>
+    <span class="marquee-item">Gemini API Powered</span>
+    <span class="marquee-item">Google Sheets Integration</span>
+    <span class="marquee-item">One-Time Payment</span>
+    <span class="marquee-item">Make.com Automations</span>
+    <span class="marquee-item">AI-Powered Workflows</span>
+    <span class="marquee-item">Passive Income from India</span>
+    <span class="marquee-item">No-Code Templates</span>
+    <span class="marquee-item">Gemini API Powered</span>
+    <span class="marquee-item">Google Sheets Integration</span>
+    <span class="marquee-item">One-Time Payment</span>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-label">The System</div>
+  <div class="section-title">How It <em>Works</em></div>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-arrow">→</div>
+      <h3>Buy the Template</h3>
+      <p>One-time payment on Lemon Squeezy. Instant download. No subscription. No upsell.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-arrow">→</div>
+      <h3>Import the Blueprint</h3>
+      <p>Upload the .json file into Make.com in 60 seconds. The entire workflow is pre-built.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-arrow">→</div>
+      <h3>Connect Your Accounts</h3>
+      <p>Link Gmail + Google Sheets + Gemini API. Step-by-step guide included. 15 min setup max.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-arrow">→</div>
+      <h3>It Runs. You Earn.</h3>
+      <p>Turn it on. The automation runs 24/7. You do nothing. That's the entire point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORE -->
+<section class="store" id="store">
+  <div class="store-header">
+    <div>
+      <div class="section-label">Templates</div>
+      <div class="section-title">Done-For-You<br><em>Automations</em></div>
+    </div>
+    <a href="#bundle" class="btn-secondary">Get All 4 — Save ₹1,000 →</a>
+  </div>
+
+  <div class="templates-grid">
+
+    <a href="#" class="template-card">
+      <div class="template-num">01</div>
+      <div class="template-tag">Lead Generation</div>
+      <h3>AI Lead Capture<br>& Auto-Reply</h3>
+      <p>Captures every inbound enquiry, logs it to Google Sheets, and sends a professional AI-written reply in under 5 seconds — 24/7.</p>
+      <div class="template-price">
+        <span class="price-inr">₹1,999</span>
+        <span class="price-usd">/ $49 USD</span>
+      </div>
+      <div class="template-includes">
+        <span class="include-tag">.json Blueprint</span>
+        <span class="include-tag">Google Sheet</span>
+        <span class="include-tag">AI Prompts</span>
+        <span class="include-tag">Email Templates</span>
+      </div>
+    </a>
+
+    <a href="#" class="template-card">
+      <div class="template-num">02</div>
+      <div class="template-tag">Invoicing</div>
+      <h3>Invoice Follow-Up<br>Machine</h3>
+      <p>Sends Day 3, Day 7, and Day 14 payment reminders automatically. Stops the moment the invoice is marked Paid. Never chase again.</p>
+      <div class="template-price">
+        <span class="price-inr">₹1,999</span>
+        <span class="price-usd">/ $49 USD</span>
+      </div>
+      <div class="template-includes">
+        <span class="include-tag">.json Blueprint</span>
+        <span class="include-tag">Invoice Tracker</span>
+        <span class="include-tag">AI Prompts</span>
+        <span class="include-tag">Email Templates</span>
+      </div>
+    </a>
+
+    <a href="#" class="template-card">
+      <div class="template-num">03</div>
+      <div class="template-tag">Job Search</div>
+      <h3>AI Job Alert<br>& Tracker</h3>
+      <p>Scans LinkedIn, Naukri, and Indeed every morning. Filters by your keywords. Logs to Notion. Sends one clean daily digest at 8am.</p>
+      <div class="template-price">
+        <span class="price-inr">₹1,999</span>
+        <span class="price-usd">/ $49 USD</span>
+      </div>
+      <div class="template-includes">
+        <span class="include-tag">.json Blueprint</span>
+        <span class="include-tag">Notion DB</span>
+        <span class="include-tag">AI Prompts</span>
+        <span class="include-tag">Email Templates</span>
+      </div>
+    </a>
+
+    <a href="#" class="template-card">
+      <div class="template-num">04</div>
+      <div class="template-tag">Content</div>
+      <h3>YouTube Repurposing<br>Engine</h3>
+      <p>Publish one YouTube video. Get 10 pieces of platform-ready content — titles, thread, LinkedIn post, Instagram caption, SEO tags — automatically.</p>
+      <div class="template-price">
+        <span class="price-inr">₹1,999</span>
+        <span class="price-usd">/ $49 USD</span>
+      </div>
+      <div class="template-includes">
+        <span class="include-tag">.json Blueprint</span>
+        <span class="include-tag">Google Docs</span>
+        <span class="include-tag">AI Prompts</span>
+        <span class="include-tag">Email Templates</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- BUNDLE -->
+<div class="bundle" id="bundle">
+  <div class="bundle-left">
+    <h2>Get All 4 Templates.<br>Save ₹1,000.</h2>
+    <p>One payment. Every automation. Lead capture, invoice follow-up, job tracking, and content repurposing — all running simultaneously. Zero monthly fees. Yours forever.</p>
+  </div>
+  <div class="bundle-right">
+    <div class="bundle-price-inr">₹6,999</div>
+    <div class="bundle-price-usd">$149 USD · saves ₹1,000</div>
+    <a href="#" class="btn-dark">Get the Bundle →</a>
+  </div>
+</div>
+
+<!-- BLOG -->
+<section class="blog" id="blog">
+  <div class="section-label">From the Builder</div>
+  <div class="section-title">Free <em>Guides</em></div>
+
+  <div class="blog-grid">
+
+    <a href="#" class="blog-card featured">
+      <div class="blog-cat">Make.com</div>
+      <h3>How to Automate Invoice Reminders — Complete Make.com Guide</h3>
+      <p>The full step-by-step breakdown. Build the entire workflow from scratch, or buy the template and skip to the part where you get paid.</p>
+      <div class="blog-meta">8 min read · Automation</div>
+    </a>
+
+    <a href="#" class="blog-card">
+      <div class="blog-cat">Lead Gen</div>
+      <h3>Auto-Reply Every Customer Enquiry in 5 Seconds</h3>
+      <p>Set up once. Never miss a lead again.</p>
+      <div class="blog-meta">6 min read</div>
+    </a>
+
+    <a href="#" class="blog-card">
+      <div class="blog-cat">Job Search</div>
+      <h3>Build an AI Job Tracker in Notion + Make.com</h3>
+      <p>Stop checking Naukri manually every morning.</p>
+      <div class="blog-meta">7 min read</div>
+    </a>
+
+    <a href="#" class="blog-card">
+      <div class="blog-cat">AI Tools</div>
+      <h3>Gemini API vs Claude API — Which One for Make.com?</h3>
+      <p>Free tiers, speed, accuracy — tested on all 4 templates.</p>
+      <div class="blog-meta">5 min read</div>
+    </a>
+
+    <a href="#" class="blog-card">
+      <div class="blog-cat">Content</div>
+      <h3>1 YouTube Video → 10 Posts Using Make.com + AI</h3>
+      <p>The exact workflow that saves 3 hours per video.</p>
+      <div class="blog-meta">9 min read</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools" id="tools">
+  <div class="section-label">The Stack</div>
+  <div class="section-title">Tools I <em>Use</em><br>& Recommend</div>
+
+  <div class="tools-grid">
+    <a href="#" class="tool-card">
+      <div class="tool-icon">⚙️</div>
+      <div class="tool-name">Make.com</div>
+      <div class="tool-desc">The automation engine behind all 4 templates. Free tier handles 1,000 ops/month — enough for most workflows.</div>
+      <div class="tool-commission">Affiliate: 20% recurring commission</div>
+    </a>
+    <a href="#" class="tool-card">
+      <div class="tool-icon">🤖</div>
+      <div class="tool-name">Gemini API</div>
+      <div class="tool-desc">Google's AI API. Free tier: 1,000 requests/day. Powers all AI prompts in every template. No credit card required.</div>
+      <div class="tool-commission">Free · No affiliate needed</div>
+    </a>
+    <a href="#" class="tool-card">
+      <div class="tool-icon">🍋</div>
+      <div class="tool-name">Lemon Squeezy</div>
+      <div class="tool-desc">Where the templates are sold. Handles Indian payouts, VAT, GST, and USD/INR automatically. 5% fee only on sales.</div>
+      <div class="tool-commission">Affiliate: 50% on referrals</div>
+    </a>
+    <a href="#" class="tool-card">
+      <div class="tool-icon">📋</div>
+      <div class="tool-name">Notion</div>
+      <div class="tool-desc">Used in Template 3 as the job tracker database. Free forever plan is more than enough for this workflow.</div>
+      <div class="tool-commission">Affiliate: Credit per signup</div>
+    </a>
+    <a href="#" class="tool-card">
+      <div class="tool-icon">📝</div>
+      <div class="tool-name">Hashnode</div>
+      <div class="tool-desc">Free blog with built-in SEO and domain authority. Where all ShunyaEngine guides are published. No hosting cost.</div>
+      <div class="tool-commission">Free · Drive organic traffic</div>
+    </a>
+    <a href="#" class="tool-card">
+      <div class="tool-icon">📊</div>
+      <div class="tool-name">Google Sheets</div>
+      <div class="tool-desc">Used in Templates 1, 2, and 4 as the data layer. Free. Works natively with Make.com. No setup friction.</div>
+      <div class="tool-commission">Free · Part of Google Workspace</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="nav-logo">Shunya<span>Engine</span></a>
+    <p>Building passive income from India. Raw. Real. Automated. No face. No name. Just systems.</p>
+  </div>
+
+  <div class="footer-col">
+    <h4>Templates</h4>
+    <ul>
+      <li><a href="#">AI Lead Capture</a></li>
+      <li><a href="#">Invoice Follow-Up</a></li>
+      <li><a href="#">Job Alert Tracker</a></li>
+      <li><a href="#">YouTube Repurposer</a></li>
+      <li><a href="#">Full Bundle — ₹6,999</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h4>Guides</h4>
+    <ul>
+      <li><a href="#">Make.com Setup</a></li>
+      <li><a href="#">Gemini API Guide</a></li>
+      <li><a href="#">Invoice Automation</a></li>
+      <li><a href="#">Job Tracker Build</a></li>
+      <li><a href="#">All Articles →</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-badge">
+    <p>Target Monthly<br>Passive Income</p>
+    <strong>₹85,000</strong>
+    <p>Zero monthly fees<br>on all tools</p>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <p>© 2026 ShunyaEngine · Built from India</p>
+  <p>Zero Investment. Zero Face. Real Income.</p>
+</div>
+
+</body>
+</html>
