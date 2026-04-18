@@ -541,7 +541,69 @@
     text-transform: uppercase;
   }
 
-  /* ─── BUNDLE CTA ─── */
+  /* ─── WHAT'S INSIDE EXPAND ─── */
+  .whats-inside {
+    margin-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .whats-inside summary {
+    padding: 10px 0 6px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+  }
+
+  .whats-inside summary::-webkit-details-marker { display: none; }
+
+  .whats-inside summary::after {
+    content: '▾';
+    font-size: 11px;
+    transition: transform 0.2s;
+  }
+
+  .whats-inside[open] summary::after {
+    transform: rotate(-180deg);
+  }
+
+  .inside-rows {
+    padding: 8px 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .inside-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 10px;
+    align-items: start;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .inside-row:last-child { border-bottom: none; }
+
+  .inside-file {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: #6ee7b7;
+    letter-spacing: 0.05em;
+    padding-top: 2px;
+  }
+
+  .inside-desc {
+    font-size: 10px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
   .bundle {
     background: var(--accent);
     padding: 80px 48px;
@@ -981,7 +1043,7 @@
 
   <div class="templates-grid">
 
-    <a href="#" class="template-card">
+    <div class="template-card">
       <div class="template-num">01</div>
       <div class="template-tag">Lead Generation</div>
       <h3>AI Lead Capture<br>& Auto-Reply</h3>
@@ -996,7 +1058,29 @@
         <span class="include-tag">AI Prompts</span>
         <span class="include-tag">Email Templates</span>
       </div>
-    </a>
+      <details class="whats-inside">
+        <summary>What's Inside</summary>
+        <div class="inside-rows">
+          <div class="inside-row">
+            <div class="inside-file">workflow-blueprint.json</div>
+            <div class="inside-desc">The complete tested automation — import directly into Make.com.</div>
+          </div>
+          <div class="inside-row">
+            <div class="inside-file">lead-tracker.xlsx</div>
+            <div class="inside-desc">Pre-formatted Google Sheet. Every lead logged automatically.</div>
+          </div>
+          <div class="inside-row">
+            <div class="inside-file">AI-PROMPTS.html</div>
+            <div class="inside-desc">Prompt variants for different business types — freelancer, B2B, retail.</div>
+          </div>
+          <div class="inside-row">
+            <div class="inside-file">+ 3 more files</div>
+            <div class="inside-desc">Setup guide, email templates & README — everything to go live today.</div>
+          </div>
+        </div>
+      </details>
+      <a href="#" class="btn-primary" style="display:inline-block;margin-top:18px;font-size:11px;padding:10px 20px;">Get This Template →</a>
+    </div>
 
     <a href="#" class="template-card">
       <div class="template-num">02</div>
