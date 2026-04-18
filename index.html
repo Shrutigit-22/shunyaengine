@@ -59,17 +59,32 @@
   }
 
   .nav-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 0.08em;
-    color: var(--white);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
   }
 
-  .nav-logo span { color: var(--green); }
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 2px;
+  }
+
+  .nav-logo-top {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .nav-logo-bottom {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.12em;
+    color: var(--green);
+  }
 
   .nav-links {
     display: flex;
@@ -937,7 +952,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">
-    <svg width="32" height="32" viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg">
+    <svg width="44" height="44" viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg">
       <circle cx="0" cy="0" r="72" fill="none" stroke="#00c48c" stroke-width="10"/>
       <circle cx="0" cy="0" r="52" fill="none" stroke="#00c48c" stroke-width="3"/>
       <circle cx="0" cy="0" r="22" fill="none" stroke="#00c48c" stroke-width="3"/>
@@ -950,6 +965,10 @@
         <line x1="50.9" y1="50.9" x2="60.1" y2="60.1"/><line x1="-50.9" y1="-50.9" x2="-60.1" y2="-60.1"/>
       </g>
     </svg>
+    <span class="nav-logo-text">
+      <span class="nav-logo-top">Shunya</span>
+      <span class="nav-logo-bottom">Engine</span>
+    </span>
   </a>
   <ul class="nav-links">
     <li><a href="#how">How It Works</a></li>
